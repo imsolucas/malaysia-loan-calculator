@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 :root {
@@ -5,9 +6,13 @@
   --foreground: #171717;
   --card-background: #fffeb5;
   --card-foreground: #171717;
-  --input-background: #272727;
-  --input-foreground: #ededed;
+  --input-background: #ffe2ad;
+  --input-foreground: #000000;
   --chart-line: #0300c5;
+
+  /* Option specific */
+  --option-background: transparent;
+  --option-foreground: #000000;
 }
 
 .dark {
@@ -18,6 +23,10 @@
   --input-background: #272727;
   --input-foreground: #ededed;
   --chart-line: #10b981;
+
+  /* Dark mode options */
+  --option-background: #171717;
+  --option-foreground: #ededed;
 }
 
 body {
@@ -34,4 +43,15 @@ body {
 .input {
   background: var(--input-background);
   color: var(--input-foreground);
+}
+
+/* Select options styling */
+select {
+  background-color: var(--input-background);
+  color: var(--input-foreground);
+}
+
+select option {
+  background-color: var(--option-background);
+  color: var(--option-foreground);
 }
