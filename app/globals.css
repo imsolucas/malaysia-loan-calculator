@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ffe2ad;
   --foreground: #171717;
-  --card-background: #ffffff;
+  --card-background: #fffeb5;
   --card-foreground: #171717;
-  --input-background: #ffffff;
-  --input-foreground: #171717;
+  --input-background: #272727;
+  --input-foreground: #ededed;
+  --chart-line: #0300c5;
 }
 
 .dark {
@@ -16,6 +17,7 @@
   --card-foreground: #ededed;
   --input-background: #272727;
   --input-foreground: #ededed;
+  --chart-line: #10b981;
 }
 
 body {

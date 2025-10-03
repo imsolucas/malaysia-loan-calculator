@@ -26,7 +26,7 @@ export default function LoanChart({ data }: { data: { year: number; totalCost: n
             formatter={(value: number) => [`RM ${value.toFixed(2)}`, 'Total Cost']}
             labelFormatter={(year) => `Year: ${year}`}
           />
-          <Line type="monotone" dataKey="totalCost" stroke="#10b981" strokeWidth={2} dot={false} />
+          <Line type="monotone" dataKey="totalCost" stroke="var(--chart-line)" strokeWidth={2} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>
