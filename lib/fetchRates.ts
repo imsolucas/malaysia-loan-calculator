@@ -21,8 +21,7 @@ async function fetchJson(url: string) {
 export async function fetchLendingRates(): Promise<LendingRate[]> {
   const START_YEAR = 1975;
   const END_YEAR = 2022;
-  const base =
-    "https://api.worldbank.org/v2/country/MY/indicator/FR.INR.LEND?format=json&per_page=50";
+  const base = process.env.WORLD_BANK_API_URL || "";
 
   const firstJson = await fetchJson(base + "&page=1");
   const meta = firstJson[0] ?? { pages: 1 };
