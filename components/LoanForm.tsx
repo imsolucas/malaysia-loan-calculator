@@ -41,12 +41,6 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
 
   return (
     <div className="space-y-3 sm:space-y-4 px-4 sm:px-0">
-      {/* Header Text */}
-      <div className="text-center mb-4 sm:mb-6">
-        <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.7 }}>
-          Planning for your next property purchase? Get a clearer idea of your monthly instalment payments with our calculator.
-        </p>
-      </div>
 
       {/* Loan Amount Card */}
       <div
