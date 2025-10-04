@@ -68,11 +68,11 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
               </div>
             </div>
             <div className="flex-grow min-w-0">
-              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)", opacity: 0.6 }}>
+              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)"}}>
                 Loan Amount
               </label>
               <div className="flex items-center gap-1 sm:gap-2">
-                <span className="text-xl sm:text-2xl font-semibold flex-shrink-0" style={{ color: "var(--card-foreground)", opacity: 0.8 }}>RM</span>
+                <span className="text-xl sm:text-2xl font-semibold flex-shrink-0" style={{ color: "var(--card-foreground)"}}>RM</span>
                 <input
                   type="number"
                   className="text-2xl sm:text-4xl font-bold bg-transparent border-none outline-none w-full focus:ring-0 min-w-0"
@@ -117,15 +117,15 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
               </div>
             </div>
             <div className="flex-grow min-w-0">
-              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)", opacity: 0.6 }}>
+              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)"}}>
                 Loan Duration
               </label>
               <div className="flex items-baseline gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
                 <span className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--card-foreground)" }}>{years}</span>
-                <span className="text-lg sm:text-xl font-medium" style={{ color: "var(--card-foreground)", opacity: 0.7 }}>
+                <span className="text-lg sm:text-xl font-medium" style={{ color: "var(--card-foreground)"}}>
                   Year{years !== "1" ? "s" : ""}
                 </span>
-                <span className="text-xs sm:text-sm" style={{ color: "var(--foreground)", opacity: 0.5 }}>
+                <span className="text-xs sm:text-sm" style={{ color: "var(--foreground)"}}>
                   ({values.months ?? 12} months)
                 </span>
               </div>
@@ -166,12 +166,12 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
               </div>
             </div>
             <div className="flex-grow min-w-0">
-              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)", opacity: 0.6 }}>
+              <label className="block text-xs font-medium uppercase tracking-wide mb-1 sm:mb-2" style={{ color: "var(--foreground)"}}>
                 Origination Fee
               </label>
               <div className="flex items-center gap-1 sm:gap-2">
                 {values.feeType === "flat" && (
-                  <span className="text-xl sm:text-2xl font-semibold flex-shrink-0" style={{ color: "var(--card-foreground)", opacity: 0.8 }}>RM</span>
+                  <span className="text-xl sm:text-2xl font-semibold flex-shrink-0" style={{ color: "var(--card-foreground)"}}>RM</span>
                 )}
                 <input
                   type="number"
@@ -180,7 +180,7 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
                   value={values.feeValue}
                   onChange={(e) => updateField("feeValue", Number(e.target.value))}
                 />
-                <span className="text-2xl sm:text-3xl font-bold flex-shrink-0" style={{ color: "var(--card-foreground)", opacity: 0.8 }}>
+                <span className="text-2xl sm:text-3xl font-bold flex-shrink-0" style={{ color: "var(--card-foreground)"}}>
                   {values.feeType === "percent" ? "%" : ""}
                 </span>
               </div>
@@ -193,10 +193,10 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
       <div className="card rounded-lg sm:rounded-xl shadow-lg transition-all duration-200">
         <div className="p-4 sm:p-6">
           <div className="flex items-center gap-2 mb-4 sm:mb-5">
-            <svg className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: "var(--foreground)", opacity: 0.6 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: "var(--foreground)"}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
-            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wide" style={{ color: "var(--card-foreground)", opacity: 0.9 }}>
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wide" style={{ color: "var(--card-foreground)"}}>
               Additional Settings
             </h3>
           </div>
@@ -204,7 +204,7 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
           <div className="space-y-4 sm:space-y-5">
             {/* Fee Type */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-foreground)", opacity: 0.8 }}>
+              <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-foreground)"}}>
                 Fee Type
               </label>
               <select
@@ -219,7 +219,7 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
 
             {/* Fee Treatment */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-foreground)", opacity: 0.8 }}>
+              <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-foreground)"}}>
                 Fee Payment Method
               </label>
               <select
@@ -233,23 +233,23 @@ export default function LoanForm({ onChange }: { onChange: (values: LoanFormValu
             </div>
 
             {/* BNM Adjustment */}
-            <div className="pt-2 sm:pt-2" style={{ borderTop: "1px solid var(--foreground)", opacity: 0.1 }}>
+            <div className="pt-2 sm:pt-2" style={{ borderTop: "1px solid var(--foreground)"}}>
               <label className="flex items-start gap-2 sm:gap-3 cursor-pointer group pt-2 sm:pt-3">
                 <div className="flex items-center h-5 sm:h-6 mt-0.5 sm:mt-0">
                   <input
                     id="bnmAdjustment"
                     type="checkbox"
                     className="w-4 h-4 sm:w-5 sm:h-5 rounded border-2 text-green-600 focus:ring-2 focus:ring-green-500 dark:focus:ring-green-600 focus:ring-offset-0 transition-all cursor-pointer"
-                    style={{ borderColor: "var(--foreground)", opacity: 0.3 }}
+                    style={{ borderColor: "var(--foreground)"}}
                     checked={values.bnmAdjustment}
                     onChange={(e) => updateField("bnmAdjustment", e.target.checked)}
                   />
                 </div>
                 <div className="flex-grow">
-                  <span className="text-xs sm:text-sm font-medium transition-colors" style={{ color: "var(--card-foreground)", opacity: 0.9 }}>
+                  <span className="text-xs sm:text-sm font-medium transition-colors" style={{ color: "var(--card-foreground)"}}>
                     Apply BNM Adjustment
                   </span>
-                  <p className="text-xs mt-0.5 sm:mt-1" style={{ color: "var(--foreground)", opacity: 0.5 }}>
+                  <p className="text-xs mt-0.5 sm:mt-1" style={{ color: "var(--foreground)"}}>
                     Reduces effective rate by 2.75%
                   </p>
                 </div>
