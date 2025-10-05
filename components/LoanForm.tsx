@@ -184,7 +184,7 @@ export default function LoanForm({
                 className="input w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium focus:ring-2 focus:ring-green-500 dark:focus:ring-green-600 focus:outline-none transition-all border-0"
                 value={values.months ?? 12}
                 onChange={(e) =>
-                  updateField("months", Number(e.target.value) as any)
+                  updateField("months", Number(e.target.value) as LoanFormValues["months"])
                 }
               >
                 <option value={6}>6 months</option>
@@ -334,7 +334,7 @@ export default function LoanForm({
                     style={{ borderColor: "var(--foreground)" }}
                     checked={values.bnmAdjustment}
                     onChange={(e) =>
-                      updateField("bnmAdjustment", e.target.checked as any)
+                      updateField("bnmAdjustment", e.target.checked as LoanFormValues["bnmAdjustment"])
                     }
                   />
                 </div>
