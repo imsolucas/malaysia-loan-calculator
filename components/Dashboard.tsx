@@ -8,6 +8,8 @@ import LoanChart from "./LoanChart";
 import { computeAllYears, LoanInputs } from "@/lib/calc";
 import { LendingRate, fetchLendingRates } from "@/lib/fetchRates";
 import { useTheme } from "@/contexts/ThemeContext";
+import ExportButton from "./ExportButton";
+import MalaysiaOverview from "./MalaysiaOverview";
 
 export default function Dashboard() {
   const { theme, toggleTheme } = useTheme();
@@ -37,9 +39,19 @@ export default function Dashboard() {
     <main className="p-4 sm:p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-xl sm:text-2xl font-semibold">Loan Calculator</h1>
-        <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-          {theme === "light" ? "🌙" : "☀️"}
-        </button>
+        <div className="flex items-center gap-4">
+          <ExportButton results={results} theme={theme} />
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition ${
+              theme === "light"
+                ? "bg-gray-800 text-white hover:bg-gray-700"
+                : "bg-[#fffeb5] text-black hover:bg-[#fff79a]"
+            }`}
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-6">
         <motion.div
@@ -52,22 +64,45 @@ export default function Dashboard() {
         </motion.div>
 
         <div className="lg:w-2/3 space-y-6">
-          {loading && <div className="text-center py-10">Loading historical rates...</div>}
-          {error && <div className="text-center text-red-500 py-10">Error: {error.message}</div>}
+          {loading && (
+            <div className="text-center py-10">Loading historical rates...</div>
+          )}
+          {error && (
+            <div className="text-center text-red-500 py-10">
+              Error: {error.message}
+            </div>
+          )}
 
           {!loading && !error && results.length > 0 && (
             <>
+              {/* 🇲🇾 Malaysia Overview Section - ABOVE Chart */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.3 }}
               >
-                <LoanChart data={results.map((r) => ({ year: r.year, totalCost: r.totalCost }))} />
+                <MalaysiaOverview theme={theme} />
               </motion.div>
+
+              {/* 📈 Loan Chart */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.5 }}
+              >
+                <LoanChart
+                  data={results.map((r) => ({
+                    year: r.year,
+                    totalCost: r.totalCost,
+                  }))}
+                />
+              </motion.div>
+
+              {/* 🧾 Loan Table */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
               >
                 <LoanTable results={results} />
               </motion.div>
