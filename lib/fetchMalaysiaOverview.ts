@@ -13,7 +13,9 @@ const INDICATORS = [
 ];
 
 async function fetchIndicator(indicatorId: string): Promise<IndicatorData | null> {
-  const url = `https://api.worldbank.org/v2/country/MY/indicator/${indicatorId}?format=json&per_page=1`;
+const BASE_URL =
+    process.env.NEXT_PUBLIC_WORLD_BANK_OVERVIEW_API_URL || "";
+  const url = `${BASE_URL}/country/MY/indicator/${indicatorId}?format=json&per_page=1`;
   const res = await fetch(url);
   const json = await res.json();
 

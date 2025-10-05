@@ -1,51 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-// Fetch Malaysia overview data from World Bank API
-async function fetchMalaysiaOverview() {
-  const indicators = {
-    GDP: "NY.GDP.MKTP.CD",
-    Population: "SP.POP.TOTL",
-    Inflation: "FP.CPI.TOTL.ZG",
-    "GNI per Capita": "NY.GNP.PCAP.CD",
-  };
-
-  const results: { name: string; value: number | string; year: number }[] = [];
-
-  for (const [name, code] of Object.entries(indicators)) {
-    try {
-      const res = await fetch(
-        `https://api.worldbank.org/v2/country/MY/indicator/${code}?format=json&per_page=1`
-      );
-      const json = await res.json();
-      const entry = json?.[1]?.[0];
-      if (entry) {
-        results.push({
-          name,
-          value:
-            name === "Inflation"
-              ? Number(entry.value).toFixed(2) + "%"
-              : Number(entry.value),
-          year: entry.date ? Number(entry.date) : new Date().getFullYear(),
-        });
-      }
-    } catch (e) {
-      console.error(`Failed to fetch ${name}`, e);
-    }
-  }
-
-  return results;
-}
+import { fetchMalaysiaOverview } from "@/lib/fetchMalaysiaOverview";
+import type { IndicatorData } from "@/lib/fetchMalaysiaOverview";
 
 type Props = {
   theme: "light" | "dark";
 };
 
 export default function MalaysiaOverview({ theme }: Props) {
-  const [data, setData] = useState<
-    { name: string; value: string | number; year: number }[]
-  >([]);
+  const [data, setData] = useState<IndicatorData[]>([]);
 
   useEffect(() => {
     fetchMalaysiaOverview().then(setData);
