@@ -62,7 +62,6 @@ export default function LoanForm({
 
   return (
     <div className="space-y-3 sm:space-y-4 px-4 sm:px-0">
-
       {/* Loan Amount Card */}
       <div
         className={`card rounded-lg sm:rounded-xl shadow-lg transition-all duration-200 overflow-hidden ${
@@ -103,11 +102,16 @@ export default function LoanForm({
                   RM
                 </span>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   className="text-2xl sm:text-4xl font-bold bg-transparent border-none outline-none w-full focus:ring-0 min-w-0"
                   style={{ color: "var(--card-foreground)" }}
                   value={values.loanAmount}
-                  onChange={(e) => updateField("loanAmount", e.target.value)}
+                  onChange={(e) => {
+                    const cleaned = e.target.value.replace(/\D/g, ""); // remove non-digits
+                    updateField("loanAmount", cleaned);
+                  }}
                   placeholder="0"
                 />
               </div>
@@ -184,7 +188,10 @@ export default function LoanForm({
                 className="input w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium focus:ring-2 focus:ring-green-500 dark:focus:ring-green-600 focus:outline-none transition-all border-0"
                 value={values.months ?? 12}
                 onChange={(e) =>
-                  updateField("months", Number(e.target.value) as LoanFormValues["months"])
+                  updateField(
+                    "months",
+                    Number(e.target.value) as LoanFormValues["months"]
+                  )
                 }
               >
                 <option value={6}>6 months</option>
@@ -235,11 +242,27 @@ export default function LoanForm({
                   </span>
                 )}
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   className="text-2xl sm:text-4xl font-bold bg-transparent border-none outline-none w-24 sm:w-32 focus:ring-0 min-w-0"
                   style={{ color: "var(--card-foreground)" }}
                   value={values.feeValue}
-                  onChange={(e) => updateField("feeValue", e.target.value)}
+                  onChange={(e) => {
+                    // Remove non-digit characters
+                    let cleaned = e.target.value.replace(/\D/g, "");
+
+                    if (values.feeType === "percent") {
+                      // Limit percentage between 0 and 100
+                      let num = Number(cleaned);
+                      if (num > 100) num = 100;
+                      cleaned = num.toString();
+                    }
+
+                    // Only update as string (since your state uses string)
+                    updateField("feeValue", cleaned.toString());
+                  }}
+                  placeholder="0"
                 />
                 <span
                   className="text-2xl sm:text-3xl font-bold flex-shrink-0"
@@ -315,7 +338,9 @@ export default function LoanForm({
                   updateField("feeTreatment", e.target.value as FeeTreatment)
                 }
               >
-                <option value="upfront">Pay Upfront (separate from loan)</option>
+                <option value="upfront">
+                  Pay Upfront (separate from loan)
+                </option>
                 <option value="financed">Add to Loan (financed)</option>
               </select>
             </div>
@@ -334,7 +359,10 @@ export default function LoanForm({
                     style={{ borderColor: "var(--foreground)" }}
                     checked={values.bnmAdjustment}
                     onChange={(e) =>
-                      updateField("bnmAdjustment", e.target.checked as LoanFormValues["bnmAdjustment"])
+                      updateField(
+                        "bnmAdjustment",
+                        e.target.checked as LoanFormValues["bnmAdjustment"]
+                      )
                     }
                   />
                 </div>
