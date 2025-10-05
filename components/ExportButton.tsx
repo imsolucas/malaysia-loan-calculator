@@ -16,28 +16,26 @@ export default function ExportButton({ results, theme }: Props) {
 
     const headers = [
       "Year",
-      "Original Rate",
-      "Applied Rate",
-      "Principal Financed",
-      "Upfront Fee",
-      "Monthly Payment",
-      "Total Payment",
-      "Interest Paid",
-      "Total Repayment",
-      "Total Cost",
+      "Original Rate (%)",
+      "Applied Rate (%)",
+      "Principal Financed (RM)",
+      "Upfront Fee (RM)",
+      "Interest Paid (RM)",
+      "Total Cost (RM) (Upfront + Interest)",
+      "Monthly Payment (RM)",
+      "Total Repayment (RM)",
     ];
 
     const rows = results.map((r) => [
       r.year,
-      r.originalRate,
-      r.appliedRate,
-      r.principalFinanced,
-      r.upfrontFee,
-      r.monthlyPayment,
-      r.totalPayment,
-      r.interestPaid,
-      r.totalRepayment,
-      r.totalCost,
+      r.originalRate.toFixed(3),
+      r.appliedRate.toFixed(3),
+      r.principalFinanced.toFixed(3),
+      r.upfrontFee.toFixed(3),
+      r.interestPaid.toFixed(3),
+      r.totalCost.toFixed(3),
+      r.monthlyPayment.toFixed(3),
+      r.totalRepayment.toFixed(3),
     ]);
 
     const csv = [headers, ...rows].map((row) => row.join(",")).join("\n");
@@ -68,7 +66,11 @@ export default function ExportButton({ results, theme }: Props) {
         strokeWidth="2"
         viewBox="0 0 24 24"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v16h16V4M4 12h16M12 4v16" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 4v16h16V4M4 12h16M12 4v16"
+        />
       </svg>
       Export Results to CSV
     </button>
