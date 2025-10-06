@@ -66,7 +66,6 @@ export function computeYearResult(
   
   if (inputs.feeTreatment === "financed") {
     principalFinanced += feeAmount;
-	console.log('Principal Financed:', principalFinanced);
   } else if(inputs.feeTreatment === "upfront") {
     originationFee = feeAmount;
   }
