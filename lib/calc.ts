@@ -15,18 +15,14 @@ export type YearResult = {
   originalRate: number;
   appliedRate: number;
   principalFinanced: number;
-  originationFee: number; // financed fee
-  upfrontFee: number;     // paid upfront
+  originationFee: number;
+  upfrontFee: number;
   monthlyPayment: number;
   totalPayment: number;
   interestFee: number;
   totalRepayment: number;
   totalCost: number;
 };
-
-// ---------------------
-// 🧮 Helper Calculations
-// ---------------------
 
 export function computeFeeAmount(
   loanAmount: number,
@@ -61,10 +57,6 @@ export function monthlyPaymentForPrincipal(
   return payment;
 }
 
-// ---------------------
-// 📊 Yearly Computation
-// ---------------------
-
 export function computeYearResult(
   year: number,
   originalRate: number,
@@ -74,16 +66,16 @@ export function computeYearResult(
   const originalLoanAmount = inputs.loanAmount;
   const feeAmount = computeFeeAmount(originalLoanAmount, inputs.feeValue, inputs.feeType);
 
-  const principalFinanced = originalLoanAmount; // 📊 Display value (net loan)
-  let principalForCalc = originalLoanAmount;  // 💰 Used for EMI calculation
+  const principalFinanced = originalLoanAmount;
+  let principalForCalc = originalLoanAmount;
   let originationFee = 0;
   let upfrontFee = 0;
 
   if (inputs.feeTreatment === "financed") {
     originationFee = feeAmount;
-    principalForCalc += originationFee; // Add origination to loan for repayment calculation
+    principalForCalc += originationFee;
   } else if (inputs.feeTreatment === "upfront") {
-    upfrontFee = feeAmount; // Paid separately
+    upfrontFee = feeAmount;
   }
 
   const appliedRate = applyBNM(originalRate, inputs.bnmAdjustment);
@@ -97,7 +89,7 @@ export function computeYearResult(
     year,
     originalRate,
     appliedRate,
-    principalFinanced, // always show base loan here
+    principalFinanced,
     originationFee,
     upfrontFee,
     monthlyPayment,
@@ -108,10 +100,6 @@ export function computeYearResult(
   };
 }
 
-// ---------------------
-// 📅 All-Years Summary
-// ---------------------
-
 export function computeAllYears(
   rates: { year: number; rate: number }[],
   inputs: LoanInputs
@@ -120,10 +108,6 @@ export function computeAllYears(
     .map((r) => computeYearResult(r.year, r.rate, inputs))
     .sort((a, b) => a.year - b.year);
 }
-
-// ---------------------
-// 💬 Helpers for Display
-// ---------------------
 
 export function formatRM(amount: number): string {
   return `RM ${amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;

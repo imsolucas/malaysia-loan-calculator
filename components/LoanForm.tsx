@@ -37,7 +37,6 @@ export default function LoanForm({
 
   const [error, setError] = useState(false);
 
-  // Convert to numbers only when notifying parent
   useEffect(() => {
     onChange({
       ...values,

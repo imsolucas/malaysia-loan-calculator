@@ -84,8 +84,6 @@ export default function MalaysiaOverview({ theme }: Props) {
             >
               ({item.year})
             </p>
-
-            {/* Fancy tooltip on hover */}
             <div
               className="absolute hidden group-hover:flex flex-col items-center
                          bg-gray-900/90 text-white text-xs px-3 py-1 rounded-lg

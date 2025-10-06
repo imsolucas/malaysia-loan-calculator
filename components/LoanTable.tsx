@@ -14,12 +14,12 @@ export default function LoanTable({ results }: { results: YearResult[] }) {
               <th className="p-2 text-left font-semibold">World Bank Annual Lending Interest Rate<br/>(MSIA)</th>
               <th className="p-2 text-left font-semibold">Net Annual Lending Interest rate p.a<br/>(incl. BNM adjustment, if applied)</th>
               <th className="p-2 text-left font-semibold">Loan Principal</th>
-              <th className="p-2 text-left font-semibold">Origination Fee</th>
-              <th className="p-2 text-left font-semibold">Upfront Fee</th>
+              <th className="p-2 text-left font-semibold">Origination Fee<br/>(Added to Loan)</th>
+              <th className="p-2 text-left font-semibold">Upfront Payment (of Origination Fee)</th>
               <th className="p-2 text-left font-semibold">Interest Cost</th>
-              <th className="p-2 text-left font-semibold">Cost of Loan<br/>(Interest + Origination Fee / Upfront Fee)</th>
-              <th className="p-2 text-left font-semibold">Monthly Repayment of Loan (Principal + Interest + Origination Fee / Upfront Fee)</th>
-              <th className="p-2 text-left font-semibold">Total Payment (Principal + Cost of Loan)</th>
+              <th className="p-2 text-left font-semibold">Cost of Loan<br/>(Interest Charges & Origination Fee)</th>
+              <th className="p-2 text-left font-semibold">Monthly Repayment of Loan (Principal, Interest Charges & Origination Fee)</th>
+              <th className="p-2 text-left font-semibold">Total Payment (Principal & Cost of Loan)</th>
             </tr>
           </thead>
           <tbody>

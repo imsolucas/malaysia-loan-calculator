@@ -84,7 +84,7 @@ export default function Dashboard() {
                 <MalaysiaOverview theme={theme} />
               </motion.div>
 
-              {/* 📈 Loan Chart */}
+              {/* Loan Chart */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function Dashboard() {
                 />
               </motion.div>
 
-              {/* 🧾 Loan Table */}
+              {/* Loan Table */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

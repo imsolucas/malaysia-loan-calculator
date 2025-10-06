@@ -25,7 +25,7 @@ export async function fetchLendingRates(): Promise<LendingRate[]> {
 
   const firstJson = await fetchJson(base + "&page=1");
   const meta = firstJson[0] ?? { pages: 1 };
-  const rows: WorldBankRow[] = firstJson[1] ?? []; // ✅ typed
+  const rows: WorldBankRow[] = firstJson[1] ?? [];
 
   const pages = meta.pages ?? 1;
   if (pages > 1) {

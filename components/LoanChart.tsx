@@ -15,7 +15,6 @@ export default function LoanChart({
 }: {
   data: { year: number; totalCost: number }[];
 }) {
-  // 🧹 Clean data
   const safeData = useMemo(
     () => data.filter((d) => Number.isFinite(d.totalCost)),
     [data]
@@ -23,12 +22,9 @@ export default function LoanChart({
 
   return (
     <div className="card rounded-xl shadow p-4 sm:p-6">
-      {/* 🏷️ Chart Title */}
       <h3 className="text-base sm:text-lg md:text-xl font-semibold text-center mb-4">
         Cost of Loan by Year
       </h3>
-
-      {/* 🧭 Responsive container */}
       <div className="h-[260px] xs:h-[300px] sm:h-[400px] md:h-[500px] min-h-[250px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
@@ -40,11 +36,10 @@ export default function LoanChart({
               bottom: 50,
             }}
           >
-            {/* 📅 X-Axis */}
             <XAxis
               dataKey="year"
               stroke="var(--foreground)"
-              fontSize={10}
+              fontSize={12}
               tickMargin={6}
               interval="preserveStartEnd"
               label={{
@@ -52,28 +47,24 @@ export default function LoanChart({
                 position: "insideBottom",
                 offset: -5,
                 fill: "var(--foreground)",
-                fontSize: 12,
+                fontSize: 14,
                 dy: 20,
               }}
             />
-
-            {/* 💰 Y-Axis */}
             <YAxis
               tickFormatter={(v) => `RM ${v}`}
               stroke="var(--foreground)"
-              fontSize={10}
+              fontSize={12}
               width={60}
               label={{
                 value: "Cost of Loan (RM)",
                 angle: -90,
                 position: "insideLeft",
                 fill: "var(--foreground)",
-                fontSize: 12,
+                fontSize: 14,
                 dy: 60,
               }}
             />
-
-            {/* 💡 Tooltip */}
             <Tooltip
               wrapperStyle={{ zIndex: 10 }}
               contentStyle={{
@@ -90,8 +81,6 @@ export default function LoanChart({
               ]}
               labelFormatter={(year) => `Year: ${year}`}
             />
-
-            {/* 📈 Line */}
             <Line
               type="monotone"
               dataKey="totalCost"
