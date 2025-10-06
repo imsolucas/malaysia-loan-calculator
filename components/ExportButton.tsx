@@ -14,53 +14,48 @@ export default function ExportButton({ results, theme }: Props) {
       return;
     }
 
-    // CSV Headers — matching LoanTable columns
     const headers = [
       "Year",
-      "World Bank Annual Lending Interest Rate (MSIA) (%)",
-      "Net Annual Lending Interest Rate p.a (incl. BNM adjustment if applied) (%)",
+      "World Bank Annual Lending Interest Rate (MSIA)",
+      "Net Annual Lending Interest Rate p.a (incl. BNM adjustment if applied)",
       "Loan Principal (RM)",
-      "Origination Fee (RM)",
-      "Upfront Fee (RM)",
+      "Origination Fee (Added to Loan) (RM)",
+      "Upfront Payment (of Origination Fee) (RM)",
       "Interest Cost (RM)",
-      "Cost of Loan (Interest + Origination / Upfront Fee) (RM)",
-      "Monthly Repayment of Loan (Principal + Interest + Fees) (RM)",
-      "Total Payment (Principal + Cost of Loan) (RM)",
+      "Cost of Loan (Interest Charges & Origination Fee) (RM)",
+      "Monthly Repayment (Principal & Interest Charges & Origination Fee) (RM)",
+      "Total Payment (Principal & Cost of Loan) (RM)",
     ];
 
-    // Format each row with fixed decimal precision
+    const clean = (val: number | string) =>
+      String(val).replace(/,/g, "");
+
     const rows = results.map((r) => [
-      r.year,
-      r.originalRate.toFixed(3),
-      r.appliedRate.toFixed(3),
-      r.principalFinanced.toFixed(2),
-      r.originationFee.toFixed(2),
-      r.upfrontFee.toFixed(2),
-      r.interestFee.toFixed(2),
-      r.totalCost.toFixed(2),
-      r.monthlyPayment.toFixed(2),
-      r.totalRepayment.toFixed(2),
+      clean(r.year),
+      clean(r.originalRate.toFixed(3)),
+      clean(r.appliedRate.toFixed(3)),
+      clean(r.principalFinanced.toFixed(2)),
+      clean(r.originationFee.toFixed(2)),
+      clean(r.upfrontFee.toFixed(2)),
+      clean(r.interestFee.toFixed(2)),
+      clean(r.totalCost.toFixed(2)),
+      clean(r.monthlyPayment.toFixed(2)),
+      clean(r.totalRepayment.toFixed(2)),
     ]);
 
-    // Build CSV content
+    // Convert to CSV format
     const csv = [headers, ...rows].map((row) => row.join(",")).join("\n");
 
-    // Create downloadable CSV blob
+    // Trigger CSV download
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "loan_analysis_results.csv";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // Clean up the temporary URL
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "loan_analysis_by_year.csv";
+    a.click();
     URL.revokeObjectURL(url);
   };
 
-  // Theme styling
   const buttonClass =
     theme === "light"
       ? "flex items-center gap-2 px-4 py-2 rounded-lg bg-[#fffeb5] hover:bg-[#fff79a] text-gray-800 font-medium shadow transition"
@@ -71,7 +66,6 @@ export default function ExportButton({ results, theme }: Props) {
       onClick={exportToCsv}
       className={buttonClass}
       disabled={!results || results.length === 0}
-      title={!results?.length ? "No data to export" : "Export results as CSV"}
     >
       <svg
         className="w-4 h-4"
@@ -86,7 +80,7 @@ export default function ExportButton({ results, theme }: Props) {
           d="M4 4v16h16V4M4 12h16M12 4v16"
         />
       </svg>
-      Export Loan Data to CSV
+      Export to CSV
     </button>
   );
 }

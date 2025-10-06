@@ -32,7 +32,7 @@ export default function LoanChart({
             margin={{
               top: 10,
               right: 10,
-              left: 0,
+              left: 20,
               bottom: 50,
             }}
           >
@@ -63,6 +63,7 @@ export default function LoanChart({
                 fill: "var(--foreground)",
                 fontSize: 14,
                 dy: 60,
+				offset: -10,
               }}
             />
             <Tooltip
@@ -88,7 +89,7 @@ export default function LoanChart({
               strokeWidth={2}
               dot={false}
               connectNulls
-              isAnimationActive={false}
+              isAnimationActive={true}
             />
           </LineChart>
         </ResponsiveContainer>
