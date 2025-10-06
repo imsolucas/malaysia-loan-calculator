@@ -31,8 +31,8 @@ export default function LoanTable({ results }: { results: YearResult[] }) {
                 <td className="p-2 whitespace-nowrap">{formatPercent(r.originalRate)}</td>
                 <td className="p-2 whitespace-nowrap">{formatPercent(r.appliedRate)}</td>
                 <td className="p-2 whitespace-nowrap">{formatRM(r.principalFinanced)}</td>
-				<td className="p-2 whitespace-nowrap">{formatRM(r.upfrontFee)}</td>
-                <td className="p-2 whitespace-nowrap">{formatRM(r.interestPaid)}</td>
+				<td className="p-2 whitespace-nowrap">{formatRM(r.originationFee)}</td>
+                <td className="p-2 whitespace-nowrap">{formatRM(r.interestFee)}</td>
                 <td className="p-2 whitespace-nowrap">{formatRM(r.totalCost)}</td>
                 <td className="p-2 whitespace-nowrap">{formatRM(r.monthlyPayment)}</td>
                 <td className="p-2 whitespace-nowrap">{formatRM(r.totalRepayment)}</td>

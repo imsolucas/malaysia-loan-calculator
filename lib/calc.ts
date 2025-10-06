@@ -15,10 +15,10 @@ export type YearResult = {
   originalRate: number;
   appliedRate: number;
   principalFinanced: number;
-  upfrontFee: number;
+  originationFee: number;
   monthlyPayment: number;
   totalPayment: number;
-  interestPaid: number;
+  interestFee: number;
   totalRepayment: number;
   totalCost: number;
 };
@@ -62,20 +62,20 @@ export function computeYearResult(
   const feeAmount = computeFeeAmount(originalLoanAmount, inputs.feeValue, inputs.feeType);
 
   let principalFinanced = originalLoanAmount;
-  let upfrontFee = 0;
+  let originationFee = 0;
   
   if (inputs.feeTreatment === "financed") {
     principalFinanced += feeAmount;
 	console.log('Principal Financed:', principalFinanced);
   } else if(inputs.feeTreatment === "upfront") {
-    upfrontFee = feeAmount;
+    originationFee = feeAmount;
   }
 
   const appliedRate = applyBNM(originalRate, inputs.bnmAdjustment);
   const monthlyPayment = monthlyPaymentForPrincipal(principalFinanced, appliedRate, months);
   const totalPayment = monthlyPayment * months;
-  const interestPaid = totalPayment - principalFinanced;
-  const totalRepayment = totalPayment + upfrontFee;
+  const interestFee = totalPayment - principalFinanced;
+  const totalRepayment = totalPayment + originationFee;
   const totalCost = totalRepayment - originalLoanAmount;
 
   return {
@@ -83,10 +83,10 @@ export function computeYearResult(
     originalRate,
     appliedRate,
     principalFinanced,
-    upfrontFee,
+    originationFee,
     monthlyPayment,
     totalPayment,
-    interestPaid,
+    interestFee,
     totalRepayment,
     totalCost,
   };
