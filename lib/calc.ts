@@ -47,7 +47,7 @@ export function monthlyPaymentForPrincipal(
   
   if (r === 0) return principal / months;
   
-  const payment = (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+  const payment = principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
   return payment;
 }
 
@@ -66,7 +66,8 @@ export function computeYearResult(
   
   if (inputs.feeTreatment === "financed") {
     principalFinanced += feeAmount;
-  } else {
+	console.log('Principal Financed:', principalFinanced);
+  } else if(inputs.feeTreatment === "upfront") {
     upfrontFee = feeAmount;
   }
 

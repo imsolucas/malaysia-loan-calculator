@@ -14,11 +14,11 @@ export default function LoanTable({ results }: { results: YearResult[] }) {
               <th className="p-2 text-left font-semibold">Original Rate</th>
               <th className="p-2 text-left font-semibold">Applied Rate</th>
               <th className="p-2 text-left font-semibold">Principal</th>
-              <th className="p-2 text-left font-semibold">Upfront Fee</th>
+              <th className="p-2 text-left font-semibold">Origination Fee</th>
               <th className="p-2 text-left font-semibold">Interest</th>
-              <th className="p-2 text-left font-semibold">Total Cost (Upfront + Interest)</th>
-              <th className="p-2 text-left font-semibold">Monthly</th>
-              <th className="p-2 text-left font-semibold">Total Repayment</th>
+              <th className="p-2 text-left font-semibold">Total Cost (Origination + Interest)</th>
+              <th className="p-2 text-left font-semibold">Monthly Payment (Principal + Interest)</th>
+              <th className="p-2 text-left font-semibold">Total Payment (Principal + Interest + Origination)</th>
             </tr>
           </thead>
           <tbody>
