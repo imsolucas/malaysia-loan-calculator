@@ -15,7 +15,7 @@ export default function LoanChart({
 }: {
   data: { year: number; totalCost: number }[];
 }) {
-  // 🧹 Filter invalid or missing data to prevent gaps
+  // 🧹 Clean data
   const safeData = useMemo(
     () => data.filter((d) => Number.isFinite(d.totalCost)),
     [data]
@@ -24,56 +24,65 @@ export default function LoanChart({
   return (
     <div className="card rounded-xl shadow p-4 sm:p-6">
       {/* 🏷️ Chart Title */}
-      <h3 className="text-lg sm:text-xl font-semibold text-center mb-4">
-        Total Borrowing Cost by Year
+      <h3 className="text-base sm:text-lg md:text-xl font-semibold text-center mb-4">
+        Cost of Loan by Year
       </h3>
 
-      {/* 🧭 Fixed height container to prevent flex/ResponsiveContainer bugs */}
-      <div className="h-[400px] sm:h-[500px] min-h-[400px]">
+      {/* 🧭 Responsive container */}
+      <div className="h-[260px] xs:h-[300px] sm:h-[400px] md:h-[500px] min-h-[250px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={safeData}
-            margin={{ top: 10, right: 30, left: 20, bottom: 60 }}
+            margin={{
+              top: 10,
+              right: 10,
+              left: 0,
+              bottom: 50,
+            }}
           >
-            {/* 📅 X-Axis (Year) */}
+            {/* 📅 X-Axis */}
             <XAxis
               dataKey="year"
               stroke="var(--foreground)"
-              fontSize={12}
+              fontSize={10}
+              tickMargin={6}
+              interval="preserveStartEnd"
               label={{
                 value: "Year",
                 position: "insideBottom",
                 offset: -5,
                 fill: "var(--foreground)",
-                fontSize: 14,
-                dy: 25,
+                fontSize: 12,
+                dy: 20,
               }}
-              padding={{ left: 20, right: 20 }}
             />
 
-            {/* 💰 Y-Axis (Cost of Borrowing) */}
+            {/* 💰 Y-Axis */}
             <YAxis
               tickFormatter={(v) => `RM ${v}`}
               stroke="var(--foreground)"
-              fontSize={12}
-              width={90}
+              fontSize={10}
+              width={60}
               label={{
-                value: "Cost of Borrowing (RM)",
+                value: "Cost of Loan (RM)",
                 angle: -90,
                 position: "insideLeft",
                 fill: "var(--foreground)",
-                fontSize: 14,
-                dy: 70, // move it slightly down so it doesn’t overlap
+                fontSize: 12,
+                dy: 60,
               }}
             />
 
             {/* 💡 Tooltip */}
             <Tooltip
+              wrapperStyle={{ zIndex: 10 }}
               contentStyle={{
                 backgroundColor: "var(--card-background)",
                 color: "var(--foreground)",
                 borderRadius: "8px",
                 border: "1px solid var(--foreground)",
+                fontSize: "12px",
+                padding: "6px 10px",
               }}
               formatter={(value: number) => [
                 `RM ${value.toFixed(2)}`,
@@ -89,8 +98,8 @@ export default function LoanChart({
               stroke="var(--chart-line)"
               strokeWidth={2}
               dot={false}
-              connectNulls={true} // 🔗 smooths out null gaps
-              isAnimationActive={false} // 🚫 prevent flicker when hovering
+              connectNulls
+              isAnimationActive={false}
             />
           </LineChart>
         </ResponsiveContainer>
