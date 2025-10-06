@@ -5,20 +5,20 @@ import { YearResult, formatRM, formatPercent } from "@/lib/calc";
 export default function LoanTable({ results }: { results: YearResult[] }) {
   return (
     <div className="card rounded-xl shadow p-6 sm:p-8">
-      <h2 className="text-lg font-semibold mb-4">Loan Results by Year</h2>
+      <h2 className="text-lg font-semibold mb-4">Analysis Loan by Year</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse text-sm">
           <thead className="border-gray-100 dark:border-gray-800">
             <tr>
               <th className="p-2 text-left font-semibold">Year</th>
-              <th className="p-2 text-left font-semibold">Original Rate</th>
-              <th className="p-2 text-left font-semibold">Applied Rate</th>
-              <th className="p-2 text-left font-semibold">Principal</th>
+              <th className="p-2 text-left font-semibold">World Bank Annual Lending Interest Rate<br/>(MSIA)</th>
+              <th className="p-2 text-left font-semibold">Net Annual Lending Interest rate p.a<br/>(incl. BNM adjustment, if applied)</th>
+              <th className="p-2 text-left font-semibold">Loan Principal</th>
               <th className="p-2 text-left font-semibold">Origination Fee</th>
-              <th className="p-2 text-left font-semibold">Interest</th>
-              <th className="p-2 text-left font-semibold">Total Cost (Origination + Interest)</th>
-              <th className="p-2 text-left font-semibold">Monthly Payment (Principal + Interest)</th>
-              <th className="p-2 text-left font-semibold">Total Payment (Principal + Interest + Origination)</th>
+              <th className="p-2 text-left font-semibold">Total Interest Cost</th>
+              <th className="p-2 text-left font-semibold">Total Borrowing Cost</th>
+              <th className="p-2 text-left font-semibold">Monthly Repayment of Loan (Principal + Interest + Origination(if any))</th>
+              <th className="p-2 text-left font-semibold">Total Payment (Principal + Borrowing Cost)</th>
             </tr>
           </thead>
           <tbody>
