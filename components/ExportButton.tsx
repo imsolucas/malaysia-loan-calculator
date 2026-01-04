@@ -47,13 +47,13 @@ export default function ExportButton({ results, theme }: Props) {
     const csv = [headers, ...rows].map((row) => row.join(",")).join("\n");
 
     // Trigger CSV download
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "loan_analysis_by_year.csv";
-    a.click();
-    URL.revokeObjectURL(url);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" }); // this tells the content type is csv, use utf-8 to support special characters
+    const url = URL.createObjectURL(blob); // create a url for the blob
+    const a = document.createElement("a"); // create a link element
+    a.href = url; // set the href to the blob url
+    a.download = "loan_analysis_by_year.csv"; // set the download attribute with a filename
+    a.click(); // programmatically click the link to trigger the download
+    URL.revokeObjectURL(url); // clean up the url object
   };
 
   const buttonClass =
